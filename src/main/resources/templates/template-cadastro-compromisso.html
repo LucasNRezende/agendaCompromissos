@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}"></link> 
+
+    <title> Agenda Sysmap </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Cadastro de Compromissos - Agenda Sysmap</h3>
+      </div>
+
+      <div class="jumbotron">
+       	<div class="row">
+	       	<div class="col-md-12" th:if="${sucesso != null}">
+				<div class="alert alert-success">
+					<span th:text="${sucesso}"></span>
+				</div>
+			</div>
+		
+			<div class="col-md-12" th:if="${erro != null}">
+				<div class="alert alert-danger">
+					<span th:text="${erro}"></span>
+				</div>
+			</div>
+       		<form th:action="@{/compromissos/cadastro/salvar}" th:object="${compromisso}" method="post">
+       			<input type="hidden" th:field="*{id}"></input>
+       			<div class="col-md-6">
+					<div class="form-group">
+						<label for="usuario">Usuário</label> <select
+								class="form-control" th:field="*{usuario}">
+								<option value="">Selecione o Usuário</option>
+								<option th:each="usu : ${usuarios}" th:value="${usu.id}"
+										th:text="${usu.nome}" />
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="local">Local</label> 
+						<input type="text" class="form-control" id="local" name="local" placeholder="Informe o Local do compromisso" th:field="*{local}"></input>
+					</div>
+				</div>
+				 <div class="col-md-4">
+					<div class="form-group">
+						<label for="inicio">Data Inicio</label> 
+						<input type="date" class="form-control" id="inicio" name="inicio" placeholder="Informe a Data inicio" th:field="*{inicio}"></input>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="fim">Data Fim</label> 
+						<input type="date" class="form-control" id="fim" name="fim" placeholder="Informe a Data final" th:field="*{fim}"></input>
+					</div>
+				</div> 
+				<div class="col-md-12">
+							<div class="form-group">
+							<label for="descricao">Descrição</label>
+							<div class="row">
+								<div class="col-md-10">
+								<textarea id="descricao" name="descricao" minlength="20"
+									class="textInput required rounded" rows="8" cols="137"
+									style="border-radius: 4px;" th:field="*{descricao}"></textarea>
+							</div>
+							</div>
+						</div>
+					</div>
+				<div class="col-md-6">
+					<button type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-ok"></span> Salvar
+					</button>
+				</div>
+			<!-- <div class="col-md-6">
+       			<a th:href="@{/compromissos}" class="btn btn-danger"><span
+								class="glyphicon glyphicon-remove-sign"></span> Cancelar </a>
+       		</div> -->
+			</form>
+       	</div>
+      </div>
+    </div>
+  </body>
+</html>

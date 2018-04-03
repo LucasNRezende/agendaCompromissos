@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{img/favicon.png}"></link> 
+
+    <title> Agenda Sysmap </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Compromissos - Agenda Sysmap</h3>
+      </div>
+
+      <div class="jumbotron">
+      	<div class="col-md-12" th:if="${sucesso != null}">
+			<div class="alert alert-success">
+				<span th:text="${sucesso}"></span>
+			</div>
+		</div>
+		<div class="col-md-12" th:if="${erro != null}">
+			<div class="alert alert-danger">
+				<span th:text="${erro}"></span>
+			</div>
+		</div>
+       	<div class="row">
+       		<div class="col-md-12">
+       			<a th:href="@{/compromissos/cadastro}" class="btn btn-primary"><span
+							class="glyphicon glyphicon-plus"></span> Novo Compromisso</a>
+       		</div>
+       	</div>
+       	<br />
+       	<div class="row">
+       		<form th:action="@{/compromissos/pesquisar}" method="get">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="descricao">Descrição</label> 
+						<input type="text" class="form-control" id="descricao" name="descricao" placeholder="Informe a descrição"></input>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">
+					<span class="glyphicon glyphicon-search"></span> Pesquisar
+					</button>
+				</div>
+			</form>
+       	</div>
+       	<br />
+       	<h2>Compromissos</h2>
+       	<div class="table-responsive">
+	       	<table class="table table-bordered table-striped">
+	       		<thead>
+	       			<th>Cód.</th>
+	       			<th>Nome</th>
+	       			<th>Descrição</th>
+	       			<th>Local</th>
+	       			<th>Data Inicio</th>
+	       			<th>Data Fim</th>
+	       			<th></th>
+	       			<th></th>
+	       		</thead>
+	       		<tbody>
+	       			<tr th:each="com : ${compromissos}" th:object="${com}">
+	       				<td th:text="*{id}"></td>
+	       				<td th:text="*{usuario.nome}"></td>
+	       				<td th:text="*{descricao}"></td>
+	       				<td th:text="*{local}"></td>
+	       				<td th:text="*{inicio}"></td>
+	       				<td th:text="*{fim}"></td>
+	       				<td><a class="btn btn-success" th:href="@{/compromissos/cadastro} + '?id=' + *{id}"><span class="glyphicon glyphicon-pencil"></span> Editar</a></td>
+	       				<td><a class="btn btn-danger" th:href="@{/compromissos/remover} + '?id=' + *{id}"><span class="glyphicon glyphicon-trash"></span> Remover</a></td>
+	       				<td><a class="btn btn-primary" th:href="@{/compromissos/cadastro} + '?id=' + *{id}"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+	       			</tr>
+	       		</tbody>
+			</table>
+		</div>
+      </div>
+    </div>
+  </body>
+</html>

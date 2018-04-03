@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{img/favicon.png}"></link> 
+
+    <title> Agenda Sysmap </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body class="text-center">
+    <div class="container">
+      <div class="header clearfix">
+        <h1 class="text-muted"> Agenda Sysmap</h1>
+      </div>
+      <div class="jumbotron text-center">
+      	<br><br><br><br><br>
+    <div class="col-md-6">
+       			<a th:href="@{/selecionaLider}" class="btn btn-warning">LÍDER</a>
+   		</div>
+    <div class="col-md-6">
+	       			<a th:href="@{/selecionaDesenvolvedor}" class="btn btn-warning">DESENVOLVEDOR</a>
+   		</div>
+      </div>
+    </div>
+  </body>
+</html>

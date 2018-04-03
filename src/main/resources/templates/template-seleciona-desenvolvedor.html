@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{img/favicon.png}"></link> 
+
+    <title> Agenda Sysmap </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h1 class="text-muted">   </h1>
+      </div>
+
+      <div class="jumbotron">
+      	<div class="col-md-12" th:if="${sucesso != null}">
+			<div class="alert alert-success">
+				<span th:text="${sucesso}"></span>
+			</div>
+		</div>
+		<div class="col-md-12" th:if="${erro != null}">
+			<div class="alert alert-danger">
+				<span th:text="${erro}"></span>
+			</div>
+		</div>
+       	<h2>Selecione seu usuário Desenvolvedor :</h2>
+       	<br>
+       	<div class="table-responsive">
+	       	<table class="table table-bordered table-striped">
+	       		<thead>
+	       			<th>Código</th>
+	       			<th>Nome</th>
+	       			<th>Perfil</th>
+	       			<th></th>
+	       		</thead>
+	       		<tbody>
+	       			<tr th:each="usu : ${usuarios}" th:object="${usu}">
+	       				<td th:text="*{id}"></td>
+	       				<td th:text="*{nome}"></td>
+	       				<td th:text="*{perfil}"></td>
+	       				<td><a class="btn btn-primary" th:href="@{/compromissos/pesquisarDesenvolvedor} + '?id=' + *{id}">Compromissos</a></td>
+	       			</tr>
+	       		</tbody>
+			</table>
+			<div class="row">
+			<div class="col-md-6">
+	       			<a th:href="@{/home}" class="btn btn-warning"><sapn
+	       			class="glyphicon glyphicon-home"></sapn> HOME</a>
+   		</div>
+   		</div>
+		</div>
+      </div>
+    </div>
+  </body>
+</html>

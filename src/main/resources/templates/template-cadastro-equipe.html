@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}"></link> 
+
+    <title> Agenda Sysmap </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Cadastro de equipes - Agenda Sysmap</h3>
+      </div>
+
+      <div class="jumbotron">
+       	<div class="row">
+	       	<div class="col-md-12" th:if="${sucesso != null}">
+				<div class="alert alert-success">
+					<span th:text="${sucesso}"></span>
+				</div>
+			</div>
+		
+			<div class="col-md-12" th:if="${erro != null}">
+				<div class="alert alert-danger">
+					<span th:text="${erro}"></span>
+				</div>
+			</div>
+       		<form th:action="@{/equipes/cadastro/salvar}" th:object="${equipe}" method="post">
+       			<input type="hidden" th:field="*{id}"></input>
+       			<!-- <div class="col-md-6">
+					<div class="form-group">
+						<label for="usuario">Usuário</label> <select
+								class="form-control" th:field="*{usuario}">
+								<option value="">Selecione o Usuário</option>
+								<option th:each="usu : ${usuarios}" th:value="${usu.id}"
+										th:text="${usu.nome}" />
+						</select>
+					</div>
+				</div> -->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="descricao">Descricao</label> 
+						<input type="text" class="form-control" id="descricao" name="descricao" placeholder="Informe a descrição" th:field="*{descricao}"></input>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<button type="submit" class="btn btn-success">Salvar</button>
+				</div>
+			<div class="col-md-6">
+       			<a th:href="@{/equipes}" class="btn btn-primary">Voltar</a>
+       		</div>
+			</form>
+       	</div>
+      </div>
+    </div>
+  </body>
+</html>
